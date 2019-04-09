@@ -1,3 +1,4 @@
+/* Global styles */
 *,
 *::before,
 *::after{
@@ -9,6 +10,15 @@
 html{
     font-size: 10px;
     font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --main-font-color: #f2b632;
+    --main-white-color: #fff;
+    --main-dark-gray-color: #3d3d3d;
+    --main-footer-bg-color: #141414;
+    --main-font-family: "Indie Flower", cursive;
 }
 
 section{
@@ -19,14 +29,60 @@ p{
     line-height: 1.5;
     font-size: 1.8rem;
     font-weight: 300;
-    color: #3d3d3d;
+    color: var(--main-dark-gray-color);
 }
 
 a{
     text-decoration: none;
-    color: #fff;
+    color: var(--main-white-color);
 }
 
+.btn-info{
+    font-size: 1.2rem;
+    padding: 1rem;
+    color: var(--main-font-color);
+    border-bottom: 2px solid var(--main-font-color);
+    margin: 2rem 0 4rem 0;
+}
+
+.btn-info:hover{
+    background-color: var(--main-font-color);
+    color: var(--main-white-color);
+}
+
+.custom-font{
+    font-family: var(--main-font-family);
+    color: var(--main-font-color);
+    font-size: 6.5rem;
+    line-height: 1;
+    font-weight: 100;
+}
+
+.custom-font-secondary{
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-right: -5px;
+    font-size: 2.5rem;
+    line-height: .2;
+    color: var(--main-dark-gray-color);
+    margin-bottom: 5rem;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.between-sec{
+    padding: 20rem 0;
+}
+
+.between-sec-color{
+    color: var(--main-white-color);
+}
+
+/* Reusable classes */
 .btn{
     display: inline-block;
     transition: all .7s;
@@ -34,11 +90,12 @@ a{
     text-transform: uppercase;
 }
 
+/* Header */
 header{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom, rgba(0,0,0,.7), transparent),
-                url("img/background.jpg") bottom no-repeat;
+    background: linear-gradient(to bottom,rgba(0,0,0,.9), transparent),
+                url("img/hero.jpeg") bottom no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -46,6 +103,7 @@ header{
     position: relative;
 }
 
+/* Header - Nav Toggle */
 .menu{
     padding: 2rem 2.5rem;
     position: fixed;
@@ -64,13 +122,13 @@ header{
     position: absolute;
     height: 2px;
     width: 4rem;
-    background-color: #fff;
+    background-color: var(--main-white-color);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    transition: all .7s;
+    transition: .7s;
 }
 
 .menu .bar::before{
@@ -98,17 +156,66 @@ header{
     top: 0;
 }
 
+/* Header - Nav */
+.nav{
+    width: 100%;
+    height: 6rem;
+    line-height: 6rem;
+    position: relative;
+}
+
+.overlay{
+    background-color: rgba(0,0,0,.95);
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: opacity .7s;
+    transform: scale(0);
+    opacity: 0;
+}
+
+.overlay.menu-open{
+    transform: scale(1);
+    opacity: 1;
+}
+
+.nav .overlay ul{
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav .overlay ul li{
+    text-transform: uppercase;
+}
+
+.nav .overlay ul li a{
+    display: block;
+    font-size: 2rem;
+    transition: all .7s;
+}
+
+.nav .overlay ul li a:hover,
+.nav .overlay ul li a .active:hover{
+    color: var(--main-font-color);
+}
+
+/* Header - Main Text */
 .main-text{
     line-height: 0;
     margin: auto;
-    color: #fff;
+    color: var(--main-white-color);
     user-select: none;
 }
 
 .main-text h1{
-    font-family: "Amatic SC";
-    color: #fff;
-    text-shadow: 2px 2px rgba(0,0,0,.7);
+    font-family: var(--main-font-family);
+    color: var(--main-font-color);
     font-size: 8rem;
     font-weight: 100;
     margin-bottom: 5rem;
@@ -118,7 +225,7 @@ header{
     text-transform: uppercase;
     letter-spacing: 5px;
     margin-right: -5px;
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 1;
     position: relative;
 }
@@ -126,27 +233,28 @@ header{
 .main-text h2::before,
 .main-text h2::after{
     content: "";
-    width: 8rem;
+    width: 5rem;
     height: 3px;
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
-    background-color: #fff;
+    background-color: var(--main-white-color);
     border-radius: 8px;
 }
 
 .main-text h2::before{
-    left: -10rem;
+    left: -6rem;
 }
 
 .main-text h2::after{
-    right: -10rem;
+    right: -6rem;
 }
 
 .main-btn{
-    font-size: 1.8rem;
-    border: 3px solid #d1734e;
-    padding: 2.5rem 3rem;
+    font-size: 1.5rem;
+    border: 2px solid var(--main-font-color);
+    padding: 2rem 2.5rem;
+    /* letter-spacing 3px, so margin-right must be -3px(center)*/
     letter-spacing: 3px;
     margin-right: -3px;
     position: relative;
@@ -155,10 +263,106 @@ header{
 
 .main-btn:hover{
     transform: translateY(-3px);
-    background-color: #d1734e;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
 }
 
 .main-btn:active{
     transform: translateY(0);
-    background-color: inherit;
+    box-shadow: none;
+}
+
+/* Section - Our Story */
+.store{
+    width: 100%;
+    min-height: 30rem;
+    background: url("img/store.jpeg") center no-repeat;
+    background-size: cover;
+}
+
+/* Section - Fresh Ingredients */
+.fresh-ingredients{
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,.5),
+               rgba(0,0,0,.5)), url("img/between.jpeg") center no-repeat;
+    background-size: cover;
+}
+
+/* Section - Our menu */
+.image-group{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.image-group img{
+    width: 100%;
+    height: 30rem;
+}
+
+/* Section - Citrus Goodness */
+.citrus-goodness{
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,.5),
+               rgba(0,0,0,.5)), url("img/between2.jpeg") center no-repeat;
+    background-size: cover;
+}
+
+/* Section - Contact Us */
+.contact-us form{
+    width: 100%;
+    min-width: 9rem;
+    margin-top: 5rem;
+}
+
+.input,
+.text-area{
+    width: 100%;
+    max-width: 100%;
+    margin: 5px 0;
+    padding: 5px 1rem;
+    border-radius: 3px;
+    font-size: 1.5rem;
+    border: 1px solid var(--main-font-color);
+    color: #878787;
+}
+
+.input::placeholder,
+.text-area::placeholder{
+    color: #878787;
+}
+
+.text-area{
+    height: 10rem;
+}
+
+.btn-submit{
+    background-color: var(--main-font-color);
+    color: var(--main-white-color);
+    width: 100%;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+.btn-submit:hover{
+    background-color: #e1aa2f;
+}
+
+/* Footer */
+footer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    background-color: var(--main-footer-bg-color);
+    padding: 5rem 0;
+    font-size: 1.8rem;
+    color: var(--main-white-color);
+}
+
+footer h4{
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--main-font-color);
+    font-weight: 700;
 }
